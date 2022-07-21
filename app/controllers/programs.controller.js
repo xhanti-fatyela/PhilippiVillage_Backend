@@ -15,7 +15,10 @@ exports.create = (req, res) => {
         picture: req.body.picture,
         details: req.body.details,
         vactitle: req.body.vactitle,
-        vacdetails: req.body.vacdetails
+        vacdetails: req.body.vacdetails,
+        applylink: req.body.applylink,
+        duration: req.body.duration
+
     })
 
     programs

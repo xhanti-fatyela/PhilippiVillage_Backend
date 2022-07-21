@@ -1,7 +1,17 @@
-const { programs } = require("../models/index.js");
+const programs = require("../controllers/programs.controller.js")
+const { authJwt } = require("../middlewares");
+
 
 module.exports = app => {
-    const programs = require("../controllers/programs.controller.js")
+    
+
+    app.use(function(req, res, next) {
+        res.header(
+          "Access-Control-Allow-Headers",
+          "Origin, Content-Type, Accept"
+        );
+        next();
+      });
   
     let router = require("express").Router()
     
@@ -9,9 +19,9 @@ module.exports = app => {
      res.json({messege: "Welcome to my backend app"});
  })
  
-    router.post("/", programs.create)
+    router.post("/", [authJwt.verifyToken, authJwt.isAdmin], programs.create)
  
-    router.get("/all", programs.findAll)
+    router.get("/all", [authJwt.verifyToken], programs.findAll)
  
     router.get("/published", programs.findAllPublished)
  

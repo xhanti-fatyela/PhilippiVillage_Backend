@@ -8,7 +8,9 @@ module.exports = mongoose => {
         picture: String,
         details: String,
         vactitle: String,
-        vacdetails: String
+        vacdetails: String,
+        applylink: String,
+        duration: String
     },
 
     {timestamps: true}
